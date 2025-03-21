@@ -9,6 +9,7 @@ import Allianz.pages.HomePage;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import org.junit.jupiter.api.Test;
 
+
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.*;
 
 class UrodzenieDzieckaTest extends BaseTest{
@@ -17,7 +18,6 @@ class UrodzenieDzieckaTest extends BaseTest{
     void should_register_child_birth_test(){
 
         HomePage homePage = new HomePage(page);
-
         homePage.chooseBirthChild();
         DataCollectionPage dataCollectionPage = homePage.clickNextButton();
         assertThat(dataCollectionPage.getInsuredPersonQuestionMessage()).isVisible();
@@ -32,7 +32,12 @@ class UrodzenieDzieckaTest extends BaseTest{
 
         consentsCollectionPage.fillConsetnsForm();
         TicketSummaryPage ticketSummaryPage = consentsCollectionPage.clickNextButton();
+        PlaywrightAssertions.assertThat(ticketSummaryPage.getTicketSummaryMessage()).isVisible();
 
+        TicketConfirmationPage ticketConfirmationPage = ticketSummaryPage.clickNextButton();
+        ticketConfirmationPage.fillPinNumberAndConfirm();
+        PlaywrightAssertions.assertThat(ticketConfirmationPage.getWrongCodeMessage()).isVisible();
 
     }
+
 }

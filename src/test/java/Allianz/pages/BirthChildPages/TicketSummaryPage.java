@@ -4,9 +4,11 @@ import Allianz.pages.BasePage;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import lombok.Getter;
 
 public class TicketSummaryPage extends BasePage {
 
+    @Getter
     private Locator ticketSummaryMessage;
     private Locator bottonNextButton;
     public TicketSummaryPage(Page page){
@@ -15,8 +17,8 @@ public class TicketSummaryPage extends BasePage {
         this.bottonNextButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("dalej"));
     }
 
-    public TicketSummaryPage clickNextButton(){
+    public TicketConfirmationPage clickNextButton(){
         bottonNextButton.click();
-        return new TicketSummaryPage(page);
+        return new TicketConfirmationPage(page);
     }
 }

@@ -4,10 +4,14 @@ import Allianz.pages.BasePage;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import lombok.Getter;
 
 public class TicketConfirmationPage extends BasePage {
 
+    @Getter
     private Locator ticketConfirmationMessage;
+    @Getter
+    private Locator wrongCodeMessage;
     private Locator firstPinNumber;
     private Locator secondPinNumber;
     private Locator thirdPinNumber;
@@ -15,6 +19,7 @@ public class TicketConfirmationPage extends BasePage {
     public TicketConfirmationPage(Page page){
         super(page);
         this.ticketConfirmationMessage = page.getByText("Potwierdź zgłoszenie kodem SMS");
+        this.wrongCodeMessage = page.getByText("Podany kod 1097 nie jest prawidłowy.");
         this.firstPinNumber = page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("1 of 4"));
         this.secondPinNumber = page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("2 of 4"));
         this.thirdPinNumber = page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("3 of 4"));

@@ -17,10 +17,9 @@ public class ConsentsCollectionPage extends BasePage {
     public ConsentsCollectionPage(Page page) {
         super(page);
         this.ConsentsCollectionMessage = page.getByText("Przeczytaj i podaj nam dodatkowe informacje");
-        this.allConsentsCheckbox = page.getByText("Zaznacz wszystkie zgody");
-        this.pepCheckbox = page.locator("[id=\"nx-radio-3-0\\.h63soro5ice-label\"]").getByText("Nie");
-        this.usaTaxpayerCheckbox = page.locator("[id=\"nx-radio-7-0\\.nnw7owqxor-label\"]").getByText("Nie");
-        //this.usaTaxpayerCheckbox = page.locator("#nx-radio-7-0 label]").filter(new Locator.FilterOptions().setHasText("Nie"));
+        this.allConsentsCheckbox = page.locator("#nx-checkbox-251-label");
+        this.pepCheckbox = page.locator("span[class=nx-radio__label--text]").filter(new Locator.FilterOptions().setHasText("Nie")).first();
+        this.usaTaxpayerCheckbox = page.locator("span[class=nx-radio__label--text]").filter(new Locator.FilterOptions().setHasText("Nie")).last();
         this.bottomNextButton = page.locator("//button[@type='submit']");
     }
 
@@ -30,7 +29,7 @@ public class ConsentsCollectionPage extends BasePage {
     }
 
     private ConsentsCollectionPage clickPepCheckbox() {
-        pepCheckbox.click();
+        pepCheckbox.check();
         return this;
     }
 
@@ -46,7 +45,6 @@ public class ConsentsCollectionPage extends BasePage {
     }
 
     public ConsentsCollectionPage fillConsetnsForm() {
-        page.pause();
         clickAllConsentsCheckbox()
                 .clickPepCheckbox()
                 .clickUsaTaxpayerCheckbox();

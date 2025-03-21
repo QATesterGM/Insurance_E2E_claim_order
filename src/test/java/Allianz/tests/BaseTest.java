@@ -1,5 +1,6 @@
 package Allianz.tests;
 
+import Allianz.pages.HomePage;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.AfterAll;
